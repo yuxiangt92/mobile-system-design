@@ -38,5 +38,25 @@ Problem: Design an App Store.
 
 
 - Review & Score
+  Use Local-First Data Flow 
+  - Post a review
+    1. User submits review
+    2. Repository writes review = PENDING -> DB
+    3. UI refreshed immediately (Optimistic UI)
+    4. WorkManager update to server
+    5. Server updated successful, change DB status to APPROVED
+    6. Server updated failed, change DB status to FAILED (allowing for automatic retries)
+  - Fetch reviews
+    1. UI observes DB data flow
+    2. Repository fetches from remote
+    3. server response returns, merge into local database
+    4. db emit new data, UI refreshed
+    5. apply some pagination mechanism
+       
 - Minor but Crucial Optimizations
+  1. DiffUtil: only refresh part of the recyclerview to avoid excessive refresh
+  2. ETag: used for delta fetch, only pull when server content changes
+  3. Prefetching: improve scrolling performance, reduce load time
+  4. Optimistic UI: write comment, improve UI responsiveness, better user experience
+  5. WorkManager: write comment, ensure reliable retry when offline
 
