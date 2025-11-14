@@ -10,7 +10,7 @@
 7. Check past notifications
 8. Set notification settings, mute, hide...
 
-**Non-functional **
+**Non-functional**
 1. Fast & responsive UI
 2. No duplicate or missing notifications
 3. Battery efficiency
